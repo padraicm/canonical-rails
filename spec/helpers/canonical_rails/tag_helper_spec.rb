@@ -18,6 +18,10 @@ describe CanonicalRails::TagHelper do
     it 'should take the domain from the config' do
       helper.canonical_host.should == 'www.alternative-domain.com'
     end
+    
+    it 'should use the path from the request' do
+      helper.path_without_html_extension.should == '/our_resources'
+    end
 
     it 'should return no whitelisted params' do
       helper.whitelisted_params.should == {}
@@ -151,6 +155,27 @@ describe CanonicalRails::TagHelper do
       subject{ helper.canonical_tag('www.foobar.net') }
       it 'uses provided host' do
         should include('www.foobar.net')
+      end
+    end
+  end
+  
+  describe 'when path is specified' do
+    before(:each) do
+      controller.request.path_parameters = {'controller' => 'our_resources', 'action' => 'show'}
+      canonical_path('/cheeseburger')
+    end
+
+    describe '#canonical_href' do
+      subject{ helper.canonical_href }
+      it 'uses provided path' do
+        should eq('http://www.mywebstore.com/cheeseburger')
+      end
+    end
+
+    describe '#canonical_tag' do
+      subject{ helper.canonical_tag }
+      it 'uses provided path' do
+        should include('cheeseburger')
       end
     end
   end

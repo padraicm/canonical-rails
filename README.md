@@ -30,3 +30,16 @@ Finally, include the canonical_tag helper in your views:
 ```ruby
   <%= canonical_tag -%>
 ```
+
+```ruby
+Override the canonical path in a controller
+
+class ApplicationController < ActionController::Base
+  include CanonicalRails::TagHelper
+
+  def home
+    canonical_path( root_path )
+  end
+
+end
+```

@@ -10,11 +10,19 @@ module CanonicalRails
     end
 
     def path_without_html_extension
-      request.path.sub(/\.html$/, '')
+      if @path
+        @path
+      else
+        request.path.sub(/\.html$/, '')
+      end
     end
 
     def canonical_host
       CanonicalRails.host || request.host
+    end
+    
+    def canonical_path(path)
+      @path = path
     end
 
     def canonical_href(host=canonical_host)
