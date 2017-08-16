@@ -1,8 +1,7 @@
 CanonicalRails
 ==============
 [![Dependency Status](https://gemnasium.com/jumph4x/canonical-rails.png)](https://gemnasium.com/jumph4x/canonical-rails)
-
-This project rocks and uses MIT-LICENSE, foh sho. Works with rails 3 and 4.
+[![Build Status](https://travis-ci.org/jumph4x/canonical-rails.svg?branch=master)](https://travis-ci.org/jumph4x/canonical-rails)
 
 A number of articles exist explaining the issue concisely and at length:
 
@@ -10,9 +9,13 @@ A number of articles exist explaining the issue concisely and at length:
  *   [Google Support About rel="canonical"](http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139394)
  *   [Google Support About Canonicalization](http://support.google.com/webmasters/bin/answer.py?hl=en&answer=139066)
 
+## Guide
+
+Take a look at this blog post that can guide you through the idea and the setup: [Easily add canonical URLs to your Rails app](http://blog.planetargon.com/entries/2014/4/4/easily-add-canonical-urls-to-your-rails-app)
+
 ## Challenge
 
-I've seen a lot of folks do more harm by neglecting canonicalization altogether than by applying to narrowly and conservatively, so here is an attempt to let people start modestly without spending too much time on it and whitelist parameters as they need to.
+I've seen a lot of folks do more harm by neglecting canonicalization altogether than by applying too narrowly and conservatively, so here is an attempt to let people start modestly without spending too much time on it and whitelist parameters as they need to.
 
 ## Install
 
@@ -26,10 +29,12 @@ First, generate the config
 
 Then find it in config/initializers/ as canonical_rails.rb
 
-Finally, include the canonical_tag helper in your views:
+Finally, include the canonical_tag helper inside the `head` portion of
+your HTML views:
 ```ruby
   <%= canonical_tag -%>
 ```
+
 
 Override the canonical path in a controller
 ```ruby
@@ -42,3 +47,8 @@ class ApplicationController < ActionController::Base
 
 end
 ```
+## Cred
+
+A project by [Downshift Labs](http://downshiftlabs.com), Ruby on Rails,
+Performance tuning and Spree Commerce projects.
+
